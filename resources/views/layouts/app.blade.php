@@ -14,8 +14,10 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -40,7 +42,10 @@
                             <a class="nav-link" href="{{ route('action') }}">{{ __('action') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.index') }}">{{ __('actualite') }}</a>
+                            <a class="nav-link" href="{{ route('admin.index') }}">{{ __('Admin') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('counter') }}">{{ __('counter') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('espace_sante') }}">{{ __('espace_sante') }}</a>
@@ -118,5 +123,6 @@
             {{-- <a ><i class="bi bi-facebook"></i></a> --}}
         </div>
     </div>
+    @livewireScripts
 </body>
 </html>

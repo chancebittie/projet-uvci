@@ -39,14 +39,14 @@
         <link rel="stylesheet" href="{{ mix(config('adminlte.laravel_mix_css_path', 'css/app.css')) }}">
     @endif
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
     {{-- Livewire Styles --}}
     @if(config('adminlte.livewire'))
-        @if(app()->version() >= 7)
-            @livewireStyles
-        @else
-            <livewire:styles />
-        @endif
+        @livewireStyles
     @endif
+    <!-- Scripts -->
+    @vite('resources/sass/app.scss')
 
     {{-- Custom Stylesheets (post AdminLTE) --}}
     @yield('adminlte_css')
@@ -95,13 +95,11 @@
         <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
     @endif
 
+    <!-- Scripts -->
+    @vite('resources/js/app.js')
     {{-- Livewire Script --}}
     @if(config('adminlte.livewire'))
-        @if(app()->version() >= 7)
-            @livewireScripts
-        @else
-            <livewire:scripts />
-        @endif
+        @livewireScripts
     @endif
 
     {{-- Custom Scripts --}}

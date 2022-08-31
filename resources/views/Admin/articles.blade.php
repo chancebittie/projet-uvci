@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Acceuil')
+@section('title', 'articles')
 
 {{-- @section('content_header')
     <h1>Dashboard</h1>
@@ -7,7 +7,7 @@
 
 @section('content')
    <main>
-         {{-- @livewire('chambres') --}}
+         @livewire('articles')
    </main>
 @stop
 {{-- @section('right-sidebar')
@@ -25,20 +25,35 @@
 @stop
 
 <script>
-    // window.addEventListener('showModalChambre', event => {
-    //     $("#staticBackdrop").modal('show');
+    window.addEventListener('showModalTArticle', event => {
+        $("#TyptArticleModal").modal('show');
 
-    // })
-    // window.addEventListener('hideModalChambre', event => {
-    //     $("#staticBackdrop").modal('hide');
-    //     Swal.fire({
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: 'Operation effectuer avec succes',
-    //         showConfirmButton: false,
-//             timer: 1500
-//             })
-//     })
+    });
+    window.addEventListener('hideModalTArticle', event => {
+        $("#TyptArticleModal").modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Operation effectuer avec succes',
+            showConfirmButton: false,
+            timer: 1500
+            })
+    })
+    window.addEventListener('showModalArticle', event => {
+        $("#staticBackdrop").modal('show');
+
+    });
+    window.addEventListener('hideModalArticle', event => {
+        $("#staticBackdrop").modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast:true,
+            title: 'Operation effectuer avec succes',
+            showConfirmButton: false,
+            timer: 3000
+            })
+    });
 
 //     window.addEventListener('showModalss', event => {
 //         swal({

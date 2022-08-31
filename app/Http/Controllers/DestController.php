@@ -26,5 +26,9 @@ class DestController extends Controller
     {
         return view('projet.action');
     }
+    public function counter()
+    {
+        return view('livewire.counter');
+    }
 
 }

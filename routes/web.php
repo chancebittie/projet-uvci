@@ -32,6 +32,7 @@ Route::get('/apropos', [DestController::class, 'apropos'])->name('apropos');
 Route::get('/espace_annonce', [DestController::class, 'espace_annonce'])->name('espace_annonce');
 Route::get('/espace_sante', [DestController::class, 'espace_sante'])->name('espace_sante');
 Route::get('/action', [DestController::class, 'action'])->name('action');
+Route::get('/counter', [DestController::class, 'counter'])->name('counter');
 
 // Route::group()
 Route::group([
@@ -39,6 +40,10 @@ Route::group([
     'as' => 'admin.',
   ], function () {
       Route::get('/', [AdminController::class, 'index'])->name('index');
+      Route::get('/utilisateurs', [AdminController::class, 'utilisateurs'])->name('utilisateurs');
+      Route::get('/actualites', [AdminController::class, 'actualites'])->name('actualites');
+      Route::get('/pharmacies', [AdminController::class, 'pharmacies'])->name('pharmacies');
+      Route::get('/articles', [AdminController::class, 'articles'])->name('articles');
   });
 
 

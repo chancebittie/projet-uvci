@@ -14,9 +14,9 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'Allakro',
     'title_prefix' => '',
-    'title_postfix' => '',
+    'title_postfix' => '-Allakro',
 
     /*
     |--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>Admin</b> Allakro',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -150,8 +150,8 @@ return [
 
     'layout_topnav' => null,
     'layout_boxed' => null,
-    'layout_fixed_sidebar' => null,
-    'layout_fixed_navbar' => null,
+    'layout_fixed_sidebar' => true,
+    'layout_fixed_navbar' => true,
     'layout_fixed_footer' => null,
     'layout_dark_mode' => null,
 
@@ -232,7 +232,7 @@ return [
     |
     */
 
-    'right_sidebar' => false,
+    'right_sidebar' => true,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
@@ -318,10 +318,39 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'    => 'Acceuil',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' => [
+                [
+                    'text' => 'Administrateur',
+                    'url'  => 'admin',
+                ],
+                [
+                    'text' => 'client',
+                    'url'  => '/',
+                ],
+            ],
+        ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text' => 'Utilisateurs',
+            'url'  => 'admin/utilisateurs',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Articles',
+            'url'  => 'admin/articles',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Pharmacie',
+            'url'  => 'admin/pharmacies',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Actualité',
+            'url'  => 'admin/actualites',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

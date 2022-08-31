@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'Acceuil')
+@section('title', 'utilisateurs')
 
 {{-- @section('content_header')
     <h1>Dashboard</h1>
@@ -7,7 +7,7 @@
 
 @section('content')
    <main>
-         {{-- @livewire('chambres') --}}
+         @livewire('utilisateurs')
    </main>
 @stop
 {{-- @section('right-sidebar')
@@ -25,20 +25,35 @@
 @stop
 
 <script>
-    // window.addEventListener('showModalChambre', event => {
-    //     $("#staticBackdrop").modal('show');
+    window.addEventListener('showModalRole', event => {
+        $("#roleModal").modal('show');
 
-    // })
-    // window.addEventListener('hideModalChambre', event => {
-    //     $("#staticBackdrop").modal('hide');
-    //     Swal.fire({
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: 'Operation effectuer avec succes',
-    //         showConfirmButton: false,
-//             timer: 1500
-//             })
-//     })
+    });
+    window.addEventListener('hideModalRole', event => {
+        $("#roleModal").modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Operation effectuer avec succes',
+            showConfirmButton: false,
+            timer: 1500
+            })
+    })
+    window.addEventListener('showModalUser', event => {
+        $("#staticBackdrop").modal('show');
+
+    });
+    window.addEventListener('hideModalUser', event => {
+        $("#staticBackdrop").modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast:true,
+            title: 'Operation effectuer avec succes',
+            showConfirmButton: false,
+            timer: 3000
+            })
+    });
 
 //     window.addEventListener('showModalss', event => {
 //         swal({
