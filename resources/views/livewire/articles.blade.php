@@ -41,13 +41,11 @@
                                 <td>{{$article->id}}</td>
                                 <td>{{$article->nom}}</td>
                                 <td>{{$article->prix}}</td>
+                                <td>{{$article->typeArticle->type_nom}}</td>
                                 <td>
                                     <img src="{{ Storage::url($article->imageUrl)  }}" width="50" height="50" style="border-radius: 50%;">
-
-                                    {{-- <img src="{{$article->imageUrl}}" alt="" width="20"> --}}
-                                </td>
-                                <td>ss</td>
-                                {{-- <td>{{$user->isAdmin ? "Administrateur":"Client"}}</span></td> --}}
+                                 </td>
+                                <td>{{$user->updated_at->diffForHumans()}}</span></td>
                                 <td class="text-center">
                                     <button class="btn btn-success"><i class="fas fa-eye">voir</i></button>
                                     <button class="btn btn-warning text-light" wire:click='goToEdit({{$article->id}})'><i class="fas fa-eye">Modifier</i></button>
@@ -72,7 +70,8 @@
                     <h5 class="modal-title" id="staticBackdropLabel"> {{$editMode ? "modifier":"Ajouter"}} utilisateur </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form wire:submit.prevent='{{$editMode ? "modifier":"ajouter"}}' enctype="multipart/form-data">
+                {{-- <form wire:submit.prevent='{{$editMode ? "modifier":"ajouter"}}' > --}}
+
 
                     <div class="modal-body d-flex flex-wrap">
 
@@ -108,18 +107,28 @@
 
 
                         <div class="col-md-6 p-2"  >
-                            <div class="input-group">
+                            <div class="input-group mb-2">
                                 {{-- <span class="input-group-text"> <i class="fas fa-user-check"></i> </span> --}}
                                 <div class="form-floating ">
-                                  <input type="file" wire:model='imageUrl' class="form-control @error('imageUrl') is-invalid @enderror"    id="floatingInputGroup8" placeholder="image" required>
-                                  <label for="floatingInputGroup3">Image</label>
+                                    <button class="btn btn-light col-md-5" onclick="event.preventDefault();
+                                                                                            document.getElementById('imageUrl').click();"> <i class="fas fa-plus"></i> Importer une photo</button>
+                                  {{-- <input type="file" wire:model='imageUrl'  onchange="readURL(this);" class="form-control d-none @error('imageUrl') is-invalid @enderror"    id="imageUrl" placeholder="image" required> --}}
+                                  <input type="file" wire:model='imageUrl'   class="form-control d-none @error('imageUrl') is-invalid @enderror"    id="imageUrl" placeholder="image" required>
+                                  <label for="imageUrl">Image</label>
                                 </div>
                               </div>
                               <div wire:loading wire:target="imageUrl">Chatgement de l'image...</div>
-                              @if ($imageUrl)
+                              @if ($editMode)
+                                     {{-- ici s'affiche le preview image avant l'envoi --}}
+                                 {{-- <img id="blahs" class="postImg" src="http://placehold.it/180" alt="votre image" /> --}}
+
+                                 <img src="{{ Storage::url($article->imageUrl)  }}" width="50" height="50" style="border-radius: 50%;">
+                              @else
+                                @if ($imageUrl)
                                     Photo Preview:
                                     <img src="{{ $imageUrl->temporaryUrl() }}" width="100" height="100">
                                 @endif
+                              @endif
                               @error('imageUrl')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -143,7 +152,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit"  class="btn {{ $errors->all() ? 'btn-danger disabled': 'btn-primary'}}"> {{$editMode ? "Modifier":"Ajouter"}}</button>
+                        {{-- <button type="submit"  class="btn {{ $errors->all() ? 'btn-danger disabled': 'btn-primary'}}"> {{$editMode ? "Modifier":"Ajouter"}}</button> --}}
+                        <button type="submit" wire:click.prevent='{{$editMode ? "modifier":"ajouter"}}'  class="btn {{ $errors->all() ? 'btn-danger disabled': 'btn-primary'}}"> {{$editMode ? "Modifier":"Ajouter"}}</button>
                     </div>
                 </form>
                 </div>
@@ -159,7 +169,7 @@
                     <h5 class="modal-title" id="roleModalLabel">Type article</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    {{-- <form wire:submit.prevent='createTypeArticle'> --}}
+                    <form wire:submit.prevent='createTypeArticle'>
                         <div class="modal-body d-flex flex-wrap" >
                             <table class="table table-head-fixed text-nowrap table-striped table-hover">
                                 <thead>
@@ -194,7 +204,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" wire:click.prevent='createTypeArticle' class="btn {{ $errors->all() ? 'btn-danger disabled': 'btn-primary'}}"> Ajouter </button>
                         </div>
-                    {{-- </form> --}}
+                    </form>
                     </div>
                     </div>
                 </div>

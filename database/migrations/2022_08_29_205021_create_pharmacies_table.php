@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('pharmacies', function (Blueprint $table) {
             $table->id();
+            $table->string("titre");
+            $table->string("description");
+            $table->boolean("status")->default(0)->nullable();
             $table->timestamps();
         });
     }

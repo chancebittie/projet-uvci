@@ -15,4 +15,8 @@ class Article extends Model
         "imageUrl",
         "type_article_id",
     ];
+
+    public function typeArticle(){
+        return  $this->belongsTo(TypeArticle::class);
+    }
 }

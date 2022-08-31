@@ -23,6 +23,12 @@
 {{-- @vite(['resources/js/app.js']) --}}
     <script> console.log('Hi!'); </script>
 @stop
+<style>
+    .postImg{
+            max-width:180px;
+    }
+
+</style>
 
 <script>
     window.addEventListener('showModalTArticle', event => {
@@ -34,9 +40,10 @@
         Swal.fire({
             position: 'top-end',
             icon: 'success',
+            toast:true,
             title: 'Operation effectuer avec succes',
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000
             })
     })
     window.addEventListener('showModalArticle', event => {
@@ -54,23 +61,18 @@
             timer: 3000
             })
     });
+ </script>
+ <script>
+    // je suis obligé de mettre s al afin de redaurl sinon pour lr profil sa ne va pas marché
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+                var reader = new FileReader();
 
-//     window.addEventListener('showModalss', event => {
-//         swal({
-//             title: "Are you sure?",
-//             text: "Once deleted, you will not be able to recover this imaginary file!",
-//             icon: "warning",
-//             buttons: true,
-//             dangerMode: true,
-//             })
-//             .then((willDelete) => {
-//             if (willDelete) {
-//                 swal("Poof! Your imaginary file has been deleted!", {
-//                 icon: "success",
-//                 });
-//             } else {
-//                 swal("Your imaginary file is safe!");
-//             }
-//             });
-//     })
-// </script>
+                reader.onload = function (e) {
+                                $('#blahs')
+                                    .attr('src', e.target.result);
+                                        };
+                reader.readAsDataURL(input.files[0]);
+                                    }
+            }
+ </script>

@@ -12,13 +12,13 @@ class Actualites extends Component
     public $editMode=false;
     public $titre;
     public $description;
-    // public $type_article_id;
+    public $actualite_id;
     public $photo;
 
     protected $rules=[
         "titre"=>"required|min:3|string|unique:actualites",
         "description"=>"required|string|min:3",
-        "photo"=>"required|image|max:1024",
+        "photo"=>"image|max:1024",
     ];
 
     public function updated($propertedName){
@@ -33,6 +33,8 @@ class Actualites extends Component
     }
 
     public function goToAdd(){
+        $this->reset('titre',"description",'photo');
+        $this->editMode=false;
         $this->dispatchBrowserEvent('showModalActualite');
     }
     public function ajouter(){
@@ -42,6 +44,26 @@ class Actualites extends Component
             "photo"=>$this->photo->store('public/actualites'),
             // "type_article_id"=>$this->type_article_id,
         ]);
-        $this->dispatchBrowserEvent('hideModalArticle');
+        $this->reset('titre',"description",'photo');
+        $this->dispatchBrowserEvent('hideModalActualite');
+    }
+    public function goToEdit($id){
+        $this->editMode=true;
+        $actualite=Actualite::find($id);
+        $this->actualite_id=$actualite->id;
+        $this->titre=$actualite->titre;
+        $this->description=$actualite->description;
+        $this->photo=$actualite->photo;
+        $this->dispatchBrowserEvent('showModalActualite');
+    }
+    public function modifier(){
+        $actualite=Actualite::find($this->actualite_id);
+        $actualite->update([
+            "titre"=>$this->titre,
+            "description"=>$this->description,
+            // "photo"=>$this->photo->store('public/actualites'),
+        ]);
+        $this->reset('titre',"description",'photo');
+        $this->dispatchBrowserEvent('hideModalActualite');
     }
 }

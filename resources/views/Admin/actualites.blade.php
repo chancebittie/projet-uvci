@@ -25,18 +25,19 @@
 @stop
 
 <script>
-    window.addEventListener('showModalRole', event => {
-        $("#roleModal").modal('show');
+    window.addEventListener('showModalActualite', event => {
+        $("#actualiteModal").modal('show');
 
     });
-    window.addEventListener('hideModalRole', event => {
-        $("#roleModal").modal('hide');
+    window.addEventListener('hideModalActualite', event => {
+        $("#actualiteModal").modal('hide');
         Swal.fire({
             position: 'top-end',
             icon: 'success',
+            toast:true,
             title: 'Operation effectuer avec succes',
             showConfirmButton: false,
-            timer: 1500
+            timer: 3000
             })
     })
     window.addEventListener('showModalUser', event => {

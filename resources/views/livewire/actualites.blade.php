@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header bg-primary">
-                <h3 class="card-title">Table d'en-tête fixe</h3>
+                <h3 class="card-title">Actualite</h3>
                 <div class="card-tools d-flex align-items-center ">
                     <!-- Button trigger modal -->
                     <button type="button" wire:click='goToAdd' class="btn btn-primary mr-4" >
@@ -35,8 +35,10 @@
                             <tr>
                                 <td>{{$actualite->titre}}</td>
                                 <td>{{$actualite->description}}</td>
-                                <td>{{$actualite->photo}}</td>
-                                <td>{{$actualite->date}}</td>
+                                <td>
+                                     <img src="{{ Storage::url($actualite->photo)  }}" width="50" height="50" style="border-radius: 50%;">
+                                </td>
+                                <td>{{$actualite->updated_at->diffForHumans()}}</td>
                                 <td class="text-center">
                                     <button class="btn btn-success"><i class="fas fa-eye">voir</i></button>
                                     <button class="btn btn-warning text-light" wire:click='goToEdit({{$actualite->id}})'><i class="fas fa-eye">Modifier</i></button>
@@ -54,11 +56,11 @@
 
 
             <!-- Modal Ajouter utilisateur-->
-            <div class="modal fade" wire:ignore.self id="staticBackdrop" data-bs-backdrop="static" x-data="{ eye: true }" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" wire:ignore.self id="actualiteModal" data-bs-backdrop="static" x-data="{ eye: true }" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"> {{$editMode ? "modifier":"Ajouter"}} utilisateur </h5>
+                    <h5 class="modal-title" id="staticBackdropLabel"> {{$editMode ? "modifier":"Ajouter"}} Actualite </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form wire:submit.prevent='{{$editMode ? "modifier":"ajouter"}}'>
@@ -69,106 +71,60 @@
                             <div class="input-group">
                                 {{-- <span class="input-group-text"> <i class="fas fa-user"></i> </span> --}}
                                 <div class="form-floating ">
-                                  <input type="text" wire:model='nom' class="form-control  @error('nom') is-invalid @enderror" name="nom" value="{{ old('nom') }}"  autocomplete="nom" autofocus id="floatingInputGroup1" placeholder="nom" required>
-                                  <label for="floatingInputGroup1">Nom</label>
+                                  <input type="text" wire:model='titre' class="form-control  @error('titre') is-invalid @enderror" autocomplete="titre" autofocus id="floatingInputGroup1" placeholder="Titre" required>
+                                  <label for="floatingInputGroup1">Titre</label>
                                 </div>
                               </div>
-                              @error('nom')
+                              @error('titre')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                               @enderror
                         </div>
 
-                        <div class="col-md-6   p-3">
-                            <div class="input-group">
-                                {{-- <span class="input-group-text"> <i class="fas fa-user-check"></i> </span> --}}
-                                <div class="form-floating ">
-                                  <input type="text" wire:model='prenom' class="form-control @error('prenom') is-invalid @enderror" name="prenom" value="{{ old('prenom') }}"  autocomplete="prenom" autofocus id="floatingInputGroup2" placeholder="Prenom" required>
-                                  <label for="floatingInputGroup2">Prenom</label>
-                                </div>
-                              </div>
-                              @error('prenom')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                              @enderror
-                        </div>
+
 
                         <div class="col-md-6 p-2">
                             <div class="input-group">
                                 {{-- <span class="input-group-text"> <i class="fas fa-user-check"></i> </span> --}}
                                 <div class="form-floating ">
-                                  <input type="text" wire:model='email' class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email"  id="floatingInputGroup3" placeholder="Email" required>
-                                  <label for="floatingInputGroup3">Email</label>
+                                  <input type="text" wire:model='description' class="form-control @error('description') is-invalid @enderror"  autocomplete="description"  id="floatingInputGroup3" placeholder="Description" required>
+                                  <label for="floatingInputGroup3">Description</label>
                                 </div>
                               </div>
-                              @error('email')
+                              @error('description')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                               @enderror
                         </div>
 
-                        <div class="col-md-6 p-2">
+                        <div class="col-md-6 p-2"  >
                             <div class="input-group">
                                 {{-- <span class="input-group-text"> <i class="fas fa-user-check"></i> </span> --}}
                                 <div class="form-floating ">
-                                  <input type="text" wire:model='telephone' class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}"  autocomplete="telephone"  id="floatingInputGroup8" placeholder="Telephone" required>
-                                  <label for="floatingInputGroup3">Telephone</label>
+                                  <input type="file" wire:model='photo' class="form-control @error('photo') is-invalid @enderror"    id="floatingInputGroup8" placeholder="image">
+                                  <label for="floatingInputGroup3">Image</label>
                                 </div>
                               </div>
-                              @error('telephone')
+                              @error('photo')
                                     <span class="text-danger" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                               @enderror
                         </div>
+                        <div class="col-md-6">
+                           @if ($photo)
+                                @if ($editMode)
+                                    <img src="{{ Storage::url($actualite->photo)  }}" width="50" height="50" style="border-radius: 50%;">
+                                @else
+                                    <div wire:loading wire:target="photo">Chatgement de l'image...</div>
+                                    Photo Preview:
+                                    <img src="{{ $photo->temporaryUrl() }}" width="100" height="100">
+                                @endif
+                           @endif
 
-                        @if ($editMode==false)
-                        <div class="col-md-6 p-2">
-                            <div class="input-group">
-                                <span class="input-group-text" x-on:click="eye = ! eye"> <i x-bind:class="eye?'fas fa-eye':'fas fa-eye-slash'"></i> </span>
-                                <div class="form-floating ">
-                                  <input x-bind:type="eye? 'text':'password'" wire:model='password' class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}"  autocomplete="email"  id="floatingInputGroup3" placeholder="password" required>
-                                  <label for="floatingInputGroup3">Mots de passe</label>
-                                </div>
-                            </div>
-                              @error('password')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                              @enderror
                         </div>
-
-                        <div class="col-md-6 p-2">
-                            <div class="input-group">
-                                <span class="input-group-text" x-on:click="eye = ! eye"> <i x-bind:class="eye?'bi bi-eye-fill':'bi bi-eye-slash-fill'"></i> </span>
-                                <div class="form-floating ">
-                                  <input type="password" wire:model='password_confirmation' x-bind:type="eye? 'text':'password'" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" value="{{ old('password_confirmation') }}"  autocomplete="password_confirmation"  id="floatingInputGroup4" required>
-                                  <label for="floatingInputGroup2">Comfirmation</label>
-                                </div>
-                            </div>
-                            @error('password_confirmation')
-                                <span class="text-danger" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        @endif
-
-
-                            {{-- <div class="row g-2"> --}}
-                                <div class="col-md mt-3">
-                                  <div class="form-floating">
-                                    <select class="form-select fs-5" wire:model='role' id="floatingSelectGrid">
-                                            <option value="1">Administrateur</option>
-                                            <option value="0">Client</option>
-                                    </select>
-                                    <label for="floatingSelectGrid">selectionner Roles</label>
-                                  </div>
-                                </div>
-                              {{-- </div> --}}
 
 
                     </div>
