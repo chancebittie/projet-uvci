@@ -45,7 +45,7 @@
                                 <td>
                                     <img src="{{ Storage::url($article->imageUrl)  }}" width="50" height="50" style="border-radius: 50%;">
                                  </td>
-                                <td>{{$user->updated_at->diffForHumans()}}</span></td>
+                                <td>{{$article->updated_at->diffForHumans()}}</span></td>
                                 <td class="text-center">
                                     <button class="btn btn-success"><i class="fas fa-eye">voir</i></button>
                                     <button class="btn btn-warning text-light" wire:click='goToEdit({{$article->id}})'><i class="fas fa-eye">Modifier</i></button>
