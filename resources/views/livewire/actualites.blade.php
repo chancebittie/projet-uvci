@@ -33,8 +33,8 @@
                     <tbody>
                         @foreach ($actualites as $actualite)
                             <tr>
-                                <td>{{$actualite->titre}}</td>
-                                <td>{{$actualite->description}}</td>
+                                <td>{{substr($actualite->titre, 0 , 20)}}...</td>
+                                <td>{{substr($actualite->description, 0 , 20)}}...</td>
                                 <td>
                                      <img src="{{ Storage::url($actualite->photo)  }}" width="50" height="50" style="border-radius: 50%;">
                                 </td>
@@ -88,8 +88,11 @@
                             <div class="input-group">
                                 {{-- <span class="input-group-text"> <i class="fas fa-user-check"></i> </span> --}}
                                 <div class="form-floating ">
-                                  <input type="text" wire:model='description' class="form-control @error('description') is-invalid @enderror"  autocomplete="description"  id="floatingInputGroup3" placeholder="Description" required>
-                                  <label for="floatingInputGroup3">Description</label>
+                                    <textarea class="form-control "  name="description" wire:model='description' style="height: 100px" placeholder="Entrez votre message" id="floatingTextarea"></textarea>
+                                        <label for="floatingTextarea">Entrez votre message</label>
+
+                                  {{-- <input type="text" wire:model='description' class="form-control @error('description') is-invalid @enderror"  autocomplete="description"  id="floatingInputGroup3" placeholder="Description" required>
+                                  <label for="floatingInputGroup3">Description</label> --}}
                                 </div>
                               </div>
                               @error('description')

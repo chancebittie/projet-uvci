@@ -1,4 +1,4 @@
-<div class="row justify-content-center " x-data="{ eye: true }">
+<div class="row mt-4 justify-content-center " x-data="{ eye: true }">
     <div class="col-md-8 ">
         <div class="card">
             <div class="card-header">{{ __('Inscription') }}</div>

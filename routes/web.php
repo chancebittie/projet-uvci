@@ -20,30 +20,35 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('acceuil');
+// Route::get('/', function () {
+//     return view('home');
+// })->name('actualite');
 
 Auth::routes();
 
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/actualite', [DestController::class, 'actualite'])->name('actualite');
-Route::get('/apropos', [DestController::class, 'apropos'])->name('apropos');
-Route::get('/espace_annonce', [DestController::class, 'espace_annonce'])->name('espace_annonce');
-Route::get('/espace_sante', [DestController::class, 'espace_sante'])->name('espace_sante');
-Route::get('/action', [DestController::class, 'action'])->name('action');
-Route::get('/counter', [DestController::class, 'counter'])->name('counter');
+Route::get('/apropos_de', [DestController::class, 'apropos_de'])->name('apropos_de');
+Route::get('/view_actualite', [DestController::class, 'view_actualites'])->name('view_actualite');
+Route::get('/sante', [DestController::class, 'sante'])->name('sante');
+Route::get('/empl_stages', [DestController::class, 'empl_stages'])->name('empl_stage');
+Route::get('/creer_empl_stage', [DestController::class, 'creer_empl_stages'])->name('creer_empl_stage');
+Route::get('/actions', [DestController::class, 'actions'])->name('actions');
+Route::get('/', [DestController::class, 'actualites'])->name('actualite');
 
 // Route::group()
 Route::group([
+    'middleware' => 'auth',
     'prefix' => '/admin',
     'as' => 'admin.',
   ], function () {
-      Route::get('/', [AdminController::class, 'index'])->name('index');
+      Route::get('/', [AdminController::class, 'index'])->name('admin');
       Route::get('/utilisateurs', [AdminController::class, 'utilisateurs'])->name('utilisateurs');
       Route::get('/actualites', [AdminController::class, 'actualites'])->name('actualites');
       Route::get('/pharmacies', [AdminController::class, 'pharmacies'])->name('pharmacies');
       Route::get('/articles', [AdminController::class, 'articles'])->name('articles');
+      Route::get('/actions', [AdminController::class, 'actions'])->name('actions');
+      Route::get('/hopitals', [AdminController::class, 'hopitals'])->name('hopitals');
   });
 
 

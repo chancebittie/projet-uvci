@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('hopitals', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('nom');
+            $table->string('description');
+            $table->string('photo');
             $table->timestamps();
         });
     }

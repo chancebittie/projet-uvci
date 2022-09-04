@@ -349,8 +349,18 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Hopital',
+            'url'  => 'admin/hopitals',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'Actualité',
             'url'  => 'admin/actualites',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Action',
+            'url'  => 'admin/actions',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -8,121 +8,201 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('assets/lib/animate/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+
+
+	@livewireStyles
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @livewireStyles
+    <!-- Scripts -->
+
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+    <!-- Spinner Start -->
+    <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div> -->
+    <!-- Spinner End -->
 
-                    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
+        <a href="{{route('actualite')}}" class="navbar-brand bg-primary d-flex align-items-center px-4 px-lg-5">
+            <h2 class="mb-2 text-white">ALLAKRO</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{{route('actualite')}}" class="nav-item nav-link active">Actualités</a>
+                <a href="{{route('sante')}}" class="nav-item nav-link">Espce santé</a>
+                <a href="{{route('empl_stage')}}" class="nav-item nav-link">Emploies et stages</a>
+				<a href="{{route('apropos_de')}}" class="nav-item nav-link">Apropos</a>
+                @guest
+                    <a class="nav-item nav-link " href="{{ route('login') }}">{{ __('connexion') }}</a>
+                @else
+                    @if (Auth::user()->isAdmin)
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('action') }}">{{ __('action') }}</a>
+                            <a class="nav-link btn" href="admin">{{ __('Administrateur') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.index') }}">{{ __('Admin') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('counter') }}">{{ __('counter') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('espace_sante') }}">{{ __('espace_sante') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('espace_annonce') }}">{{ __('espace_annonce') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('apropos') }}">{{ __('apropos') }}</a>
-                        </li>
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link btn btn-primary text-light" href="{{ route('login') }}">{{ __('connexion') }}</a>
-                                </li>
-                            @endif
+                    @endif
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->nom }} {{ Auth::user()->prenom }}
+                        </a>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                @endguest
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+
+	@yield('content')
+	{{-- @yield('view_actualite')
+	@yield('espace_sante')
+	@yield('espace_commerce')
+	@yield('view_article')
+	@yield('espace_emploie_stage')
+	@yield('apropos')
+    @yield('action') --}}
+
+
+	@if (!Route::is('login') )
+        <!-- Quote Start contact -->
+        <div class="container-xxl py-5">
+            @livewire('contact-us')
+        </div>
+        <!-- Quote End -->
+    @endif
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 wow fadeIn" data-wow-delay="0.1s" style="margin-top: 6rem;">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Address</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Allakro, Abidjan - Cocody</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Services</h4>
+                    <a class="btn btn-link" href="">Air Freight</a>
+                    <a class="btn btn-link" href="">Sea Freight</a>
+                    <a class="btn btn-link" href="">Road Freight</a>
+                    <a class="btn btn-link" href="">Logistic Solutions</a>
+                    <a class="btn btn-link" href="">Industry solutions</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Apropos</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Support</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Newsletter</h4>
+                    <p>Laissez votre mail et recévez nos informartions</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Votre email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Soumettre</button>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <main class="pt-1 mb-4">
-            @yield('content')
-        </main>
-
-        <footer class="bg-dark d-flex text-light  pt-3">
-            {{-- <div class="row"> --}}
-                <div class="col-md-3 px-4">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro corrupti tempora quis eius voluptatem! Possimus eaque explicabo consequuntur velit! Accusantium cum rerum fuga ipsam ex eum vero aspernatur, quidem soluta!
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                    </div>
                 </div>
-                <div class="col-md-3 px-4">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro corrupti tempora quis eius voluptatem! Possimus eaque explicabo consequuntur velit! Accusantium cum rerum fuga ipsam ex eum vero aspernatur, quidem soluta!
-                </div>
-                <div class="col-md-3 px-4">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro corrupti tempora quis eius voluptatem! Possimus eaque explicabo consequuntur velit! Accusantium cum rerum fuga ipsam ex eum vero aspernatur, quidem soluta!
-                </div>
-                <div class="col-md-3 px-4">
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro corrupti tempora quis eius voluptatem! Possimus eaque explicabo consequuntur velit! Accusantium cum rerum fuga ipsam ex eum vero aspernatur, quidem soluta!
-                </div>
-            {{-- </div> --}}
-            {{-- <div class="d-flex">
-                <button ><i class="bi bi-facebook"></i></button>
-            </div> --}}
-        </footer>
-        <div class="d-flex bg-dark text-center px-auto justify-content-center py-3">
-            <a href="https://fr-fr.facebook.com/uvciv/" class="bg-dark  mx-3"><i class="bi bi-facebook text-primary"></i></a>
-            <a href="https://twitter.com/uvciv?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor " class="bg-dark  mx-3"><i class="bi bi-twitter"></i></a>
-            <a  href="https://ci.linkedin.com/company/universit%C3%A9-virtuelle-de-c%C3%B4te-d-ivoire" class="bg-dark  mx-3"><i class="bi bi-linkedin"></i></a>
-            {{-- <a ><i class="bi bi-facebook"></i></a> --}}
+            </div>
         </div>
     </div>
-    @livewireScripts
+<<<<<<< HEAD
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{asset('assets/lib/wow/wow.min.js')}}"></script>
+    <script src="{{asset('assets/lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('assets/lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('assets/lib/counterup/counterup.min.js')}}"></script>
+    <script src="{{asset('assets/lib/owlcarousel/owl.carousel.min.js')}}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{asset('assets/js/main.js')}}"></script>
+    <script>
+        window.addEventListener('succesContactNous', event => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast:true,
+            title: 'demande envoyer avec succes',
+            showConfirmButton: false,
+            timer: 3000
+            })
+    });
+    </script>
+
+	@livewireScripts
 </body>
+
 </html>

@@ -39,7 +39,7 @@
             showConfirmButton: false,
             timer: 3000
             })
-    })
+    });
     window.addEventListener('showModalUser', event => {
         $("#staticBackdrop").modal('show');
 

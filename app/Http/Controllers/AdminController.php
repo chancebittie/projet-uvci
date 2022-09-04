@@ -26,4 +26,12 @@ class AdminController extends Controller
     {
         return view('admin.articles');
     }
+    public function actions()
+    {
+        return view('admin.actions');
+    }
+    public function hopitals()
+    {
+        return view('admin.hopitals');
+    }
 }
