@@ -45,8 +45,8 @@
                                 <td>{{$user->telephone}}</td>
                                 <td>{{$user->isAdmin ? "Administrateur":"Client"}}</span></td>
                                 <td class="text-center">
-                                    <button class="btn btn-success"><i class="fas fa-eye">voir</i></button>
-                                    <button class="btn btn-warning text-light" wire:click='goToEdit({{$user->id}})'><i class="fas fa-eye">Modifier</i></button>
+                                    {{-- <button class="btn btn-success"><i class="fas fa-eye">voir</i></button> --}}
+                                    <button class="btn btn-primary text-light" wire:click='goToEdit({{$user->id}})'><i class="fas fa-eye">Modifier</i></button>
                                 </td>
                             </tr>
                         @endforeach

@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Annonce extends Model
+class ActeNaissance extends Model
 {
     use HasFactory;
+
     protected $fillable=[
-        "titre",
-        "description",
-        "nombre",
-        "user_id",
-        "societe",
+        "nom",
+        "prenom",
+        "date_naissance",
+        "acte_nassance_pere",
+        "acte_nassance_mere",
     ];
 }

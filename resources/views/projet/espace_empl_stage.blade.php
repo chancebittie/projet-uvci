@@ -43,17 +43,21 @@
 <div id="fh5co-services" class="fh5co-bg-section">
     <div class="container text-center  ">
         <div class="row  border border-primary pt-5 shadow-lg">
-            @foreach ($annonces as $annonce)
-                <div class="col-md-8 col-sm-8 mb-4 ">
-                    <h3 class="text-danger"> {{$annonce->titre}}    </h3>
-                    <p>par <strong>{{$annonce->societe}}</strong></p>
-                    <p> {{$annonce->description}} </p>
-                </div>
-                <div class="col-md-4 col-sm-4 text-center">
-                    <span> {{$annonce->created_at->diffForHumans()}}</span>
-                    <p><i>nombre : {{$annonce->nombre}}</i></p>
-                </div>
-            @endforeach
+            @if (count($annonces) > 0)
+                @foreach ($annonces as $annonce)
+                    <div class="col-md-8 col-sm-8 mb-4 ">
+                        <h3 class="text-danger"> {{$annonce->titre_annonce}}    </h3>
+                        <p>par <strong>{{$annonce->nom_entreprise}}</strong></p>
+                        <p> {{$annonce->description}} </p>
+                    </div>
+                    <div class="col-md-4 col-sm-4 text-center">
+                        <span> {{$annonce->created_at->diffForHumans()}}</span>
+                        <p><i>nombre : {{$annonce->nombre_poste}}</i></p>
+                    </div>
+                @endforeach
+            @else
+            <h3 class="text-danger"> Il n'y a pas encore d'offre d'emploi disponible   </h3>
+            @endif
         </div>
     </div>
 </div>

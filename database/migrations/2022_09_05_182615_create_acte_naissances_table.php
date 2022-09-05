@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('type_articles', function (Blueprint $table) {
+        Schema::create('acte_naissances', function (Blueprint $table) {
             $table->id();
-            $table->string('type_nom');
+            $table->string("nom");
+            $table->string("prenom");
+            $table->string("date_naissance");
+            $table->string("acte_nassance_pere");
+            $table->string("acte_nassance_mere");
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('type_articles');
+        Schema::dropIfExists('date_naissances');
     }
 };

@@ -3,7 +3,7 @@
 <div class="container-fluid py-5 bg-dark ">
         <h2 class="text-light text-center">Créer une annonce</h2>
         <div class="row justify-content-center">
-            @livewire('annonces')
+            @livewire('emploi-stages')
         </div>
 </div>
 <script>

@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b> Allakro',
+    'logo' => '<b>Admin</b> ALLAKRO',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -311,20 +311,20 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
+        // [
+        //     'text'        => 'pages',
+        //     'url'         => 'admin/pages',
+        //     'icon'        => 'far fa-fw fa-file',
+        //     'label'       => 4,
+        //     'label_color' => 'success',
+        // ],
         [
             'text'    => 'Acceuil',
             'icon'    => 'fas fa-fw fa-share',
             'submenu' => [
                 [
                     'text' => 'Administrateur',
-                    'url'  => 'admin',
+                    'url'  => 'admin/utilisateurs',
                 ],
                 [
                     'text' => 'client',
@@ -332,17 +332,17 @@ return [
                 ],
             ],
         ],
-        ['header' => 'account_settings'],
+        // ['header' => 'account_settings'],
         [
             'text' => 'Utilisateurs',
             'url'  => 'admin/utilisateurs',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'Articles',
-            'url'  => 'admin/articles',
-            'icon' => 'fas fa-fw fa-user',
-        ],
+        // [
+        //     'text' => 'Articles',
+        //     'url'  => 'admin/articles',
+        //     'icon' => 'fas fa-fw fa-newspaper',
+        // ],
         [
             'text' => 'Pharmacie',
             'url'  => 'admin/pharmacies',
@@ -351,77 +351,77 @@ return [
         [
             'text' => 'Hopital',
             'url'  => 'admin/hopitals',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-hospital',
         ],
         [
             'text' => 'Actualité',
             'url'  => 'admin/actualites',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-newspaper',
         ],
         [
             'text' => 'Action',
             'url'  => 'admin/actions',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-tasks',
         ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
+        // [
+        //     'text'    => 'multilevel',
+        //     'icon'    => 'fas fa-fw fa-share',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //         [
+        //             'text'    => 'level_one',
+        //             'url'     => '#',
+        //             'submenu' => [
+        //                 [
+        //                     'text' => 'level_two',
+        //                     'url'  => '#',
+        //                 ],
+        //                 [
+        //                     'text'    => 'level_two',
+        //                     'url'     => '#',
+        //                     'submenu' => [
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                         [
+        //                             'text' => 'level_three',
+        //                             'url'  => '#',
+        //                         ],
+        //                     ],
+        //                 ],
+        //             ],
+        //         ],
+        //         [
+        //             'text' => 'level_one',
+        //             'url'  => '#',
+        //         ],
+        //     ],
+        // ],
+        // ['header' => 'labels'],
+        // [
+        //     'text'       => 'important',
+        //     'icon_color' => 'red',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'warning',
+        //     'icon_color' => 'yellow',
+        //     'url'        => '#',
+        // ],
+        // [
+        //     'text'       => 'information',
+        //     'icon_color' => 'cyan',
+        //     'url'        => '#',
+        // ],
     ],
 
     /*

@@ -10,14 +10,14 @@
         <div class="row g-5 mx-lg-0 col-lg-6">
             <div class="col-lg-12 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute img-fluid w-100 h-100" src="{{asset('assets/img/feature.jpg')}}" style="object-fit: cover;" alt="">
+                    <img src="{{ Storage::url($actualite->photo)  }}" width="100%" height="100%" >
                 </div>
             </div>
             <div class="col-lg-12 feature-text wow fadeInUp" data-wow-delay="0.1s">
-                <h2 class="mb-5" style="margin-left: 1rem">Le titre de l'actualité</h2>
+                <h2 class="mb-5" style="margin-left: 1rem">{{$actualite->titre}}</h2>
                 <div class="d-flex mb-0 wow fadeInUp" data-wow-delay="0.7s">
                     <div class="ms-4">
-                        <p class="mb-0">Diam dolor ipsum sit amet eos erat ipsum lorem sed stet lorem sit clita duo justo magna erat amet. Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam justo</p>
+                        <p class="mb-0">{{$actualite->description}}</p>
                     </div>
                 </div>
             </div>

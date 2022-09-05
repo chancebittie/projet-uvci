@@ -78,7 +78,7 @@
             Des actions de l'université virtuelle de Côte D'ivoire
         </div>
         <div class="col-md-6 text-center">
-            <a href="action" class="btn btn-primary">voir plus d'informations <i class="bi bi-arrow-right"></i></a>
+            <a href="actions" class="btn btn-primary">voir plus d'informations <i class="bi bi-arrow-right"></i></a>
         </div>
     </div>
 </div>

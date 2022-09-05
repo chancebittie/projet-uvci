@@ -14,7 +14,7 @@ class Utilisateurs extends Component
     public $email;
     public $telephone;
     public $user_id;
-    public $role;
+    public $role=0;
     // public $roleNom;
     public $password;
     public $password_confirmation;
@@ -29,12 +29,12 @@ class Utilisateurs extends Component
         "password_confirmation"=>"required|min:4",
     ];
 
-    protected $messages=[
-        "roleNom.required"=>"Le champ role es obligatoire",
-        "roleNom.min"=>"le texte du champ role doit etre de 3 caracteres",
-        "password_confirmation.required"=>"Le champ comfirmation es obligatoire",
-        "password_confirmation.min"=>"le texte du champ comfirmation doit etre de 4 caracteres",
-    ];
+    // protected $messages=[
+    //     "roleNom.required"=>"Le champ role es obligatoire",
+    //     "roleNom.min"=>"le texte du champ role doit etre de 3 caracteres",
+    //     "password_confirmation.required"=>"Le champ comfirmation es obligatoire",
+    //     "password_confirmation.min"=>"le texte du champ comfirmation doit etre de 4 caracteres",
+    // ];
 
     public function updated($propertedName){
         return $this->validateOnly($propertedName);

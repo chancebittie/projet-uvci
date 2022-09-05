@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Actualite;
 use App\Models\Annonce;
+use App\Models\EmploiStage;
 use App\Models\Pharmacie;
 use Illuminate\Http\Request;
 
@@ -29,10 +31,12 @@ class DestController extends Controller
     //     return view('projet.action');
     // }
     public function actualites(){
-        return view('home');
+        $actualites=Actualite::limit(15)->get();
+        return view('home',compact('actualites'));
     }
-    public function view_actualites(){
-        return view('projet.view_actualite');
+    public function view_actualites($id){
+        $actualite=Actualite::find($id);
+        return view('projet.view_actualite',compact('actualite'));
     }
     public function sante(){
         $pharmacies=Pharmacie::where('status',1)->get();
@@ -40,7 +44,7 @@ class DestController extends Controller
     }
 
     public function empl_stages(){
-        $annonces=Annonce::orderBy('id','DESC')->get();
+        $annonces=EmploiStage::orderBy('id','DESC')->get();
         return view('projet.espace_empl_stage',compact('annonces'));
     }
     public function creer_empl_stages(){
@@ -51,6 +55,15 @@ class DestController extends Controller
     }
     public function actions(){
         return view('projet.actions');
+    }
+    public function view_actualite1(){
+        return view('projet.actualites');
+    }
+    public function view_actualite2(){
+        return view('projet.actualites');
+    }
+    public function view_actualite3(){
+        return view('projet.actualites');
     }
 
 }

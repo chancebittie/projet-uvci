@@ -29,7 +29,10 @@ Auth::routes();
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/actualite', [DestController::class, 'actualite'])->name('actualite');
 Route::get('/apropos_de', [DestController::class, 'apropos_de'])->name('apropos_de');
-Route::get('/view_actualite', [DestController::class, 'view_actualites'])->name('view_actualite');
+Route::get('view_actualite/{id}', [DestController::class, 'view_actualites'])->name('view_actualite');
+Route::get('view_actualite1', [DestController::class, 'view_actualite1'])->name('view_actualite1');
+Route::get('view_actualite2', [DestController::class, 'view_actualite2'])->name('view_actualite2');
+Route::get('view_actualite3', [DestController::class, 'view_actualite3'])->name('view_actualite3');
 Route::get('/sante', [DestController::class, 'sante'])->name('sante');
 Route::get('/empl_stages', [DestController::class, 'empl_stages'])->name('empl_stage');
 Route::get('/creer_empl_stage', [DestController::class, 'creer_empl_stages'])->name('creer_empl_stage');
@@ -42,7 +45,7 @@ Route::group([
     'prefix' => '/admin',
     'as' => 'admin.',
   ], function () {
-      Route::get('/', [AdminController::class, 'index'])->name('admin');
+      Route::get('/utilisateurs', [AdminController::class, 'index'])->name('admin');
       Route::get('/utilisateurs', [AdminController::class, 'utilisateurs'])->name('utilisateurs');
       Route::get('/actualites', [AdminController::class, 'actualites'])->name('actualites');
       Route::get('/pharmacies', [AdminController::class, 'pharmacies'])->name('pharmacies');

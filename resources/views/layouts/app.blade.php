@@ -45,11 +45,11 @@
 <body>
 
     <!-- Spinner Start -->
-    <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
+            <span class="sr-only">Chargement...</span>
         </div>
-    </div> -->
+    </div>
     <!-- Spinner End -->
 
 
@@ -63,7 +63,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{{route('actualite')}}" class="nav-item nav-link active">Actualités</a>
+                <a href="{{route('actualite')}}" class="nav-item nav-link">Actualités</a>
                 <a href="{{route('sante')}}" class="nav-item nav-link">Espce santé</a>
                 <a href="{{route('empl_stage')}}" class="nav-item nav-link">Emploies et stages</a>
 				<a href="{{route('apropos_de')}}" class="nav-item nav-link">Apropos</a>
@@ -72,7 +72,7 @@
                 @else
                     @if (Auth::user()->isAdmin)
                         <li class="nav-item">
-                            <a class="nav-link btn" href="admin">{{ __('Administrateur') }}</a>
+                            <a class="nav-link btn" href="admin/utilisateurs">{{ __('Administrateur') }}</a>
                         </li>
                     @endif
                     <li class="nav-item dropdown">
@@ -196,6 +196,17 @@
             icon: 'success',
             toast:true,
             title: 'demande envoyer avec succes',
+            showConfirmButton: false,
+            timer: 3000
+            })
+    });
+    window.addEventListener('hideModalActualite', event => {
+        $("#exampleModalToggle").modal('hide');
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast:true,
+            title: 'actualité creer avec succes',
             showConfirmButton: false,
             timer: 3000
             })

@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('annonces', function (Blueprint $table) {
+        Schema::create('acte_deces', function (Blueprint $table) {
             $table->id();
-            $table->string('titre');
-            $table->string('description');
-            $table->string('societe');
-            $table->foreignId('user_id')->constrained();
-            $table->integer('nombre');
+            $table->string("extrait");
+            $table->string("piece_deces");
+            $table->string("certificat_deces")->nullable();
+            $table->string("piece_parent");
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annonces');
+        Schema::dropIfExists('date_deces');
     }
 };

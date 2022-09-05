@@ -31,70 +31,62 @@
         <div class="container-xxl py-5">
             <div class="container py-5">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase">Actualités</h6>
+                    @livewire('cree-actualite')
+                    {{-- <a href="" class="text-secondary text-uppercase">creer Actualités</a> --}}
                     <h1 class="mb-5">Les actualités</h1>
                 </div>
-                <div class="row g-4">
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="d-flex flex-wrap g-4">
+                    @if (count($actualites)<7)
+                        <div class="col-md-6 col-lg-4 wow fadeInUp " data-wow-delay="0.3s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
-                                <img class="img-fluid" src="{{asset('assets/img/service-1.jpg')}}" alt="">
+                                <img class="img-fluid" src="{{asset('assets/img/noel.jpg')}}" alt="">
                             </div>
-                            <h4 class="mb-3">Titre de l'actualité</h4>
-                            <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam...</p>
-                            <a class="btn-slide mt-2" href="{{route('view_actualite')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
+                            <h4 class="mb-3">Fête de Noël : Une Ong partage la magie de Noël avec les enfants d’Allakro (Cocody)</h4>
+                            <p>Quartier précaire de la commune huppée de Cocody, Allakro a reçu la visite de l’Ong Le droit de vivre qui a mis la joie dans le cœur des enfants, le vendredi 17 décembre 2021....</p>
+                            <a class="btn-slide mt-2" href="{{route('view_actualite1')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
-                                <img class="img-fluid" src="{{asset('assets/img/service-2.jpg')}}" alt="">
+                                <img class="img-fluid" src="{{asset('assets/img/uvci.jpg')}}" alt="">
                             </div>
-                            <h4 class="mb-3">Titre de l'actualité</h4>
-                            <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                            <a class="btn-slide mt-2" href="{{route('view_actualite')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
+                            <h4 class="mb-3">Humanité numérique : l’Université virtuelle de Côte d’Ivoire au service du quartier précaire d’Allakro</h4>
+                            <p>Quartier précaire de la commune huppée de Cocody, Allakro a reçu la visite de l’Ong Le droit de vivre qui a mis la joie dans le cœur des enfants, le vendredi 17 décembre 2021....</p>
+                            <a class="btn-slide mt-2" href="{{route('view_actualite2')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                         <div class="service-item p-4">
                             <div class="overflow-hidden mb-4">
-                                <img class="img-fluid" src="{{asset('assets/img/service-3.jpg')}}" alt="">
+                                <img class="img-fluid" src="{{asset('uploads/images/sante1.png')}}" alt="">
                             </div>
-                            <h4 class="mb-3">Road Freight</h4>
-                            <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                            <a class="btn-slide mt-2" href="{{route('view_actualite')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
+                            <h4 class="mb-3">Bientôt un centre de santé pour le village d’Allakro </h4>
+                            <p>Aboisso- Le ministre de la Santé et de l’Hygiène publique, Eugène Aka Aouélé, a annoncé, dimanche, la construction d’un centre de santé à Allakro ...</p>
+                            <a class="btn-slide mt-2" href="{{route('view_actualite3')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="service-item p-4">
-                            <div class="overflow-hidden mb-4">
-                                <img class="img-fluid" src="{{asset('assets/img/service-4.jpg')}}" alt="">
+                    @endif
+                    @foreach ($actualites as $actualite)
+                        <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+                            <div class="service-item p-4">
+                                <div class="overflow-hidden mb-4">
+                                    <img src="{{ Storage::url($actualite->photo)  }}" class="img-fluid">
+                                </div>
+                                <h4 class="mb-3">{{$actualite->titre}}</h4>
+                                <p>{{$actualite->description}}</p>
+                                <div class="d-flex" >
+                                    <div class="col-md-8">{{$actualite->user->nom}} {{$actualite->user->prenom}}</div>
+                                    <div class="col-md-8">{{$actualite->created_at->diffForHumans()}}</div>
+                                    {{-- <h6></h6>
+                                    <p style="text-align: right;" class="">{</p> --}}
+                                </div>
+                                <a class="btn-slide mt-2" href="{{route('view_actualite', $actualite->id)}}" ><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
+                                {{-- <a class="btn-slide mt-2" href="{{route('view_actualite')}}" ><i class="fa fa-arrow-right"></i><span>Voir plus</span></a> --}}
                             </div>
-                            <h4 class="mb-3">Train Freight</h4>
-                            <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                            <a class="btn-slide mt-2" href="{{route('view_actualite')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="service-item p-4">
-                            <div class="overflow-hidden mb-4">
-                                <img class="img-fluid" src="{{asset('assets/img/service-5.jpg')}}" alt="">
-                            </div>
-                            <h4 class="mb-3">Customs Clearance</h4>
-                            <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                            <a class="btn-slide mt-2" href="{{route('view_actualite')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
-                        <div class="service-item p-4">
-                            <div class="overflow-hidden mb-4">
-                                <img class="img-fluid" src="{{asset('assets/img/service-6.jpg')}}" alt="">
-                            </div>
-                            <h4 class="mb-3">Warehouse Solutions</h4>
-                            <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                            <a class="btn-slide mt-2" href="{{route('view_actualite')}}"><i class="fa fa-arrow-right"></i><span>Voir plus</span></a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -110,28 +102,14 @@
             <div class="d-flex text-center">
                 {{-- <i class="bi bi-person"></i> --}}
                 <div class="col-md-4">
-                    <a href="" class="btn-slide ">
-                        <div class="fs-1 rounded-circle ">
-                            <i class="bi bi-award"></i>
-                        </div>
-                        Acte de naissance
-                    </a>
+                    @livewire('acte-naissances')
                 </div>
                 <div class="col-md-4">
-                    <a href="" class="btn-slide">
-                        <div class="fs-1 rounded-circle">
-                            <i class="bi bi-stack"></i>
-                        </div>
-                        Acte de Decés
-                    </a>
+                    @livewire('acte-deces')
                 </div>
                 <div class="col-md-4 text-center">
-                    <a href="" class="btn-slide">
-                        <div class="fs-1 rounded-circle">
-                            <i class="bi bi-gift-fill"></i>
-                        </div>
-                        Acte de mariage
-                    </a>
+                    @livewire('acte-mariages')
+
                 </div>
             </div>
         </div>

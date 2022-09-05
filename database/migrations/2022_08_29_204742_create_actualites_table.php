@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("titre");
             $table->string("description");
             $table->string("photo");
+            $table->foreignId("user_id")->constrained();
             $table->timestamps();
         });
     }
