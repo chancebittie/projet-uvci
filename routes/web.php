@@ -52,6 +52,10 @@ Route::group([
       Route::get('/articles', [AdminController::class, 'articles'])->name('articles');
       Route::get('/actions', [AdminController::class, 'actions'])->name('actions');
       Route::get('/hopitals', [AdminController::class, 'hopitals'])->name('hopitals');
+      Route::get('/deces', [AdminController::class, 'deces'])->name('deces');
+      Route::get('/mariages', [AdminController::class, 'mariages'])->name('mariages');
+      Route::get('/naissances', [AdminController::class, 'naissances'])->name('naissances');
+      Route::get('/nous_contacter', [AdminController::class, 'nous_contacter'])->name('nous_contacter');
   });
 
 

@@ -348,11 +348,11 @@ return [
             'url'  => 'admin/pharmacies',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
-            'text' => 'Hopital',
-            'url'  => 'admin/hopitals',
-            'icon' => 'fas fa-fw fa-hospital',
-        ],
+        // [
+        //     'text' => 'Hopital',
+        //     'url'  => 'admin/hopitals',
+        //     'icon' => 'fas fa-fw fa-hospital',
+        // ],
         [
             'text' => 'Actualité',
             'url'  => 'admin/actualites',
@@ -368,6 +368,32 @@ return [
         //     'url'  => 'admin/settings',
         //     'icon' => 'fas fa-fw fa-lock',
         // ],
+        [
+            'text'    => 'acte',
+            'icon'    => 'fas fa-fw fa-share',
+            'submenu' =>   [
+                            [
+                                'text' => 'naissance',
+                            'url'  => 'admin/naissances',
+                            'icon' => 'fas fa-fw fa-tasks',
+                            ],
+                            [
+                                'text' => 'deces',
+                            'url'  => 'admin/deces',
+                            'icon' => 'fas fa-fw fa-tasks',
+                            ],
+                            [
+                                'text' => 'mariage',
+                            'url'  => 'admin/mariages',
+                            'icon' => 'fas fa-fw fa-tasks',
+                            ],
+                        ],
+        ],
+        [
+            'text' => 'Nous contacter',
+            'url'  => 'admin/nous_contacter',
+            'icon' => 'fas fa-fw fa-messenger',
+        ],
         // [
         //     'text'    => 'multilevel',
         //     'icon'    => 'fas fa-fw fa-share',

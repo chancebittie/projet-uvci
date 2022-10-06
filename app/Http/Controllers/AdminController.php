@@ -34,4 +34,20 @@ class AdminController extends Controller
     {
         return view('admin.hopitals');
     }
+    public function naissances()
+    {
+        return view('admin.actes-naissances');
+    }
+    public function deces()
+    {
+        return view('admin.actes-deces');
+    }
+    public function mariages()
+    {
+        return view('admin.actes-mariages');
+    }
+    public function nous_contacter()
+    {
+        return view('admin.nous-contacter');
+    }
 }

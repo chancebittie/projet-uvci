@@ -13,15 +13,15 @@ class ActeNaissances extends Component
     public $nom;
     public $prenom;
     public $date_naissance;
-    public $acte_nassance_pere;
-    public $acte_nassance_mere;
+    public $acte_naissance_pere;
+    public $acte_naissance_mere;
 
     protected $rules=[
         "nom"=>"required|string|min:3",
         "prenom"=>"required|string|min:3",
         "date_naissance"=>"required|date",
-        "acte_nassance_pere"=>"required|image|max:1024",
-        "acte_nassance_mere"=>"required|image|max:1024",
+        "acte_naissance_pere"=>"required|image|max:1024",
+        "acte_naissance_mere"=>"required|image|max:1024",
     ];
 
     public function updated($propertedName){
@@ -42,8 +42,8 @@ class ActeNaissances extends Component
         // $this->editMode=false;
         $this->validate();
         ActeNaissance::create([
-            "acte_nassance_mere"=>$this->acte_nassance_mere->store('public/Naissance'),
-            "acte_nassance_pere"=>$this->acte_nassance_pere->store('public/Naissance'),
+            "acte_naissance_mere"=>$this->acte_nassance_mere->store('public/Naissance'),
+            "acte_naissance_pere"=>$this->acte_nassance_pere->store('public/Naissance'),
             "date_naissance"=>$this->date_naissance,
             "prenom"=>$this->prenom,
             "nom"=>$this->nom,

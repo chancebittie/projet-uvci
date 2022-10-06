@@ -14,6 +14,7 @@ class Actualites extends Component
     public $description;
     public $actualite_id;
     public $photo;
+    // public $user_id;
 
     protected $rules=[
         "titre"=>"required|min:3|string|unique:actualites",
@@ -42,7 +43,7 @@ class Actualites extends Component
             "titre"=>$this->titre,
             "description"=>$this->description,
             "photo"=>$this->photo->store('public/actualites'),
-            // "type_article_id"=>$this->type_article_id,
+            "user_id"=>auth()->user()->id,
         ]);
         $this->reset('titre',"description",'photo');
         $this->dispatchBrowserEvent('hideModalActualite');

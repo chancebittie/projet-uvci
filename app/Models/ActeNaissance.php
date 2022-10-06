@@ -13,7 +13,7 @@ class ActeNaissance extends Model
         "nom",
         "prenom",
         "date_naissance",
-        "acte_nassance_pere",
-        "acte_nassance_mere",
+        "acte_naissance_pere",
+        "acte_naissance_mere",
     ];
 }

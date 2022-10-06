@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header bg-primary">
-                <h3 class="card-title">pharmacie</h3>
+                <h3 class="card-title">Hopitaux</h3>
                 <div class="card-tools d-flex align-items-center ">
                     <!-- Button trigger modal -->
                     <button type="button" wire:click='goToAdd' class="btn btn-primary mr-4" >
